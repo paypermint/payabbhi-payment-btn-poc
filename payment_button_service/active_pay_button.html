@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payabbhi Payment Button</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 0;
+            width: 0;
+        }
+
+        #pay-btn {
+            /* padding: 3px; */
+            border: 2px solid red;
+            border-radius: 64px;
+            /* margin: 10px 3px; */
+            cursor: pointer;
+            background-color: yellow;
+            color: black;
+            height: 70px;
+            width: 150px;
+            /* font-size: 18px; */
+        }
+    </style>
+</head>
+
+<body>
+    <button id="pay-btn">Pay With Payabbhi</button>
+    <script>
+        const payBtn = document.getElementById('pay-btn');
+        const buttonStyle = window.getComputedStyle(payBtn);
+        const usefulButtonStyle = {
+            paymentButtonData: true,
+            height: buttonStyle.height,
+            width: buttonStyle.width
+        };
+        const message = JSON.stringify(usefulButtonStyle);
+        parent.postMessage(message, "*");
+        payBtn.addEventListener('click', function () {
+            parent.postMessage("openPayForm", "*");
+        });
+    </script>
+</body>
+
+</html>

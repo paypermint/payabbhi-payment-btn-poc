@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         * {
+            padding: 0;
+            margin: 0;
+        }
+        button {
+            border: 1px solid #0066cc;
+            background-color: #0099cc;
+            color: #ffffff;
+            padding: 5px 10px;
+        }
+
+        button:hover {
+            border: 1px solid #0099cc;
+            background-color: #00aacc;
+            color: #ffffff;
+            padding: 5px 10px;
+        }
+
+        button:disabled,
+        button[disabled] {
+            border: 1px solid #999999;
+            background-color: #cccccc;
+            color: #666666;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <span id="inactive-pay-btn">Inactive Pay Button</span> -->
+    <button id="inactive-pay-btn" disabled>Inactive Pay Button</button>
+    <script>
+        const inactivePayBtn = document.getElementById('inactive-pay-btn');
+        const buttonStyle = window.getComputedStyle(inactivePayBtn);
+        const usefulButtonStyle = {
+            paymentButtonData: true,
+            height: buttonStyle.height,
+            width: buttonStyle.width
+        };
+        const message = JSON.stringify(usefulButtonStyle);
+        parent.postMessage(message, "*");
+        // inactivePayBtn.addEventListener('click', function () {
+        //     alert('this button is not active')
+        // });
+    </script>
+</body>
+
+</html>

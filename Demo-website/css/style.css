@@ -1,0 +1,9 @@
+body {
+    width: 80vw;
+    margin: auto;
+}
+
+.my-jumbotron {
+    background-color: black;
+    color: white;
+}
