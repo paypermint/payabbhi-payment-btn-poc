@@ -34,3 +34,7 @@ Steps:
 
 7. To see the Inactive button update Demo-website>main.js line number-10.
     - `const paymentButtonURL = 'http://localhost:8081/inactive_pay_button.html';` // payment_button_service full URL
+    
+8. To check the live payment flow update Demo-website>main.js line number-8.
+
+    - `const paymentFormURL = 'http://localhost:8081/payabbhi_live_payment_form.html';` (replace the port number with payment_form_service's port number)
