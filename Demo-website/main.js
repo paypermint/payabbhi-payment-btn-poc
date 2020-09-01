@@ -5,7 +5,7 @@ const dynamicHost = scriptTag.getAttribute('data-dynamic-host');
 const env = scriptTag.getAttribute('data-env');
 //replace these URLs
 const paymentFormDomain = 'http://localhost:8081';
-const paymentFormURL = 'http://localhost:8081/payabbhi_test_payment_form.html';
+const paymentFormURL = 'http://localhost:8081/payabbhi_live_payment_form.html';
 const paymentButtonDomain = 'http://localhost:8082';
 const paymentButtonURL = 'http://localhost:8082/active_pay_button.html';
 
@@ -13,18 +13,18 @@ const paymentButtonURL = 'http://localhost:8082/active_pay_button.html';
 // const paymentButtonURL = `https://${dynamicHost}/buttons/${env}/${payabbhiPaymentBtnId}/index.html`;
 const paymentFormIframeId = 'iframe-id';
 const paymentButtonIframeId = 'iframe-pay-btn-id';
-console.log(payabbhiPaymentBtnId);
-console.log(dynamicHost);
-console.log(env);
+// console.log(payabbhiPaymentBtnId);
+// console.log(dynamicHost);
+// console.log(env);
 const openPayForm = function () {
-    console.log("insideopenPayForm ");
-    console.log("parentTag:", parentTag);
-    console.log("parentTag.parentNode:", parentTag.parentNode);
-    console.log(parentTag.parentNode);
+    // console.log("insideopenPayForm ");
+    // console.log("parentTag:", parentTag);
+    // console.log("parentTag.parentNode:", parentTag.parentNode);
+    // console.log(parentTag.parentNode);
     createPaymentFormIframe(parentTag.parentNode);
 }
 const createPayButtonIframe = function (context, func) {
-    console.log("inside createPayButtonIframe");
+    // console.log("inside createPayButtonIframe");
     const iframePayBtn = document.createElement("iframe");
     iframePayBtn.src = paymentButtonURL;
     iframePayBtn.id = paymentButtonIframeId;
@@ -48,7 +48,7 @@ const createPayButtonIframe = function (context, func) {
 }
 
 const closePaymentFormIframe = function () {
-    console.log("inside closePaymentFormIframe");
+    // console.log("inside closePaymentFormIframe");
     document.getElementById("iframe-id").remove()
 }
 
@@ -63,7 +63,7 @@ const updateIPaymentBtnframeSize = function (data) {
     iframeBtn.style.width = data.width;
 }
 const createPaymentFormIframe = function (context) {
-    console.log("inside createPaymentFormIframe");
+    // console.log("inside createPaymentFormIframe");
     const iframe = document.createElement("iframe");
     iframe.src = paymentFormURL;
     iframe.id = paymentFormIframeId;
@@ -91,21 +91,21 @@ const createPaymentFormIframe = function (context) {
 window.addEventListener("message", (event) => {
     const data = event.data;
     const origin = event.origin;
-    console.log("origin:", origin);
+    // console.log("origin:", origin);
     if ((data === 'closePaymentFormIframe' || data === 'closePaymentConfirmationIframe') && origin === paymentFormDomain) { closePaymentFormIframe(); }
     else if (data === 'openPayForm' && origin === paymentButtonDomain) {
         openPayForm();
     }
     else if (data === "payabbhiCheckoutClosed" && origin === paymentFormDomain) {
-        console.log("inside main.js : payabbhiCheckoutClosed:", data);
-        console.log("inside main.js event.origin:", event.origin);
+        // console.log("inside main.js : payabbhiCheckoutClosed:", data);
+        // console.log("inside main.js event.origin:", event.origin);
         notifyPaymentFormIframe(data);
     }
     else {
         try {
             const paymentBtnStyleInfo = JSON.parse(data);
             if ("paymentButtonData" in JSON.parse(data) && origin === paymentButtonDomain) {
-                console.log("paymentBtnStyleInfo:",paymentBtnStyleInfo);
+                // console.log("paymentBtnStyleInfo:",paymentBtnStyleInfo);
                 //for resetting style of the iframe of pay btn
                 updateIPaymentBtnframeSize(JSON.parse(data))
             }
